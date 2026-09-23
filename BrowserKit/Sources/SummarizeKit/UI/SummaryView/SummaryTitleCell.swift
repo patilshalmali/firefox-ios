@@ -9,6 +9,7 @@ import UIKit
 final class SummaryTitleCell: UITableViewCell, ReusableCell, ThemeApplicable {
     private struct UX {
         static let titleBottomPadding: CGFloat = 20
+        static let horizontalPadding: CGFloat = 16.0
     }
     private let titleLabel: UILabel = .build {
         $0.font = FXFontStyles.Bold.title1.scaledFont()
@@ -29,8 +30,10 @@ final class SummaryTitleCell: UITableViewCell, ReusableCell, ThemeApplicable {
         contentView.addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                constant: UX.horizontalPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                 constant: -UX.horizontalPadding),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -UX.titleBottomPadding)
         ])
     }

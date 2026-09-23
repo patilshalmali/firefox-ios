@@ -12,6 +12,7 @@ final class SummaryBrandCell: UITableViewCell, ReusableCell, ThemeApplicable {
         static let subViewsSidePadding: CGFloat = 6.0
         static let brandLabelLeadingPadding: CGFloat = 8.0
         static let containerViewBottomPadding: CGFloat = 16.0
+        static let horizontalPadding: CGFloat = 16.0
     }
 
     private let logoImageView: UIImageView = .build {
@@ -45,8 +46,10 @@ final class SummaryBrandCell: UITableViewCell, ReusableCell, ThemeApplicable {
 
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            containerView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                   constant: UX.horizontalPadding),
+            containerView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor,
+                                                    constant: -UX.horizontalPadding),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                   constant: -UX.containerViewBottomPadding),
 

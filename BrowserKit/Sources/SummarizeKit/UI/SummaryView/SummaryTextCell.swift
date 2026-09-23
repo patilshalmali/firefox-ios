@@ -7,6 +7,9 @@ import Common
 import UIKit
 
 final class SummaryTextCell: UITableViewCell, ReusableCell, ThemeApplicable {
+    private struct UX {
+        static let horizontalPadding: CGFloat = 16.0
+    }
     private let summaryView: UITextView = .build {
         $0.isScrollEnabled = false
         $0.font = FXFontStyles.Regular.headline.scaledFont()
@@ -26,7 +29,14 @@ final class SummaryTextCell: UITableViewCell, ReusableCell, ThemeApplicable {
 
     private func setup() {
         contentView.addSubview(summaryView)
-        summaryView.pinToSuperview()
+        NSLayoutConstraint.activate([
+            summaryView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            summaryView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                 constant: UX.horizontalPadding),
+            summaryView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                  constant: -UX.horizontalPadding),
+            summaryView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
 
     func configure(text: NSAttributedString?, a11yId: String) {
